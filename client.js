@@ -510,8 +510,48 @@ window.__ModuleLoader__.load({
           bubbleEl));
     }
 
-    // ── 侧栏开关 ──
-    function PuzzleToggle() {
+    // ── 侧栏开关（照 dsh-liya-archives 模式：图标常显、文字仅宽栏；窄栏变 36px 圆形）──
+    function PuzzleToggle(props) {
+      var wide = !!(props && props.wide);
+      var tickState = react.useState(0);
+      var setTick = tickState[1];
+      react.useEffect(function () {
+        function onEvt() { setTick(function (x) { return x + 1; }); }
+        window.addEventListener(PANEL_EVENT, onEvt);
+        return function () { window.removeEventListener(PANEL_EVENT, onEvt); };
+      }, []);
+      return react.createElement('div', {
+        style: {
+          flex: 'none', alignItems: 'center', display: 'flex', position: 'relative',
+          width: wide ? '100%' : 36, height: wide ? 49 : 36,
+          margin: wide ? '8px 0 0' : 0,
+          justifyContent: wide ? 'stretch' : 'center',
+        },
+      },
+        react.createElement('button', {
+          type: 'button',
+          title: '莉娅拼图',
+          'aria-label': '莉娅拼图',
+          'aria-expanded': panelState.open,
+          onClick: togglePanel,
+          style: {
+            width: wide ? '100%' : 36, height: wide ? 49 : 36,
+            borderRadius: wide ? 12 : '50%',
+            cursor: 'pointer', border: 'none', fontFamily: 'inherit', fontSize: 14,
+            color: 'var(--dsw-alias-label-primary, inherit)',
+            background: panelState.open ? 'var(--dsw-alias-interactive-bg-hover, rgba(128,128,128,0.15))' : 'transparent',
+            display: 'inline-flex', alignItems: 'center',
+            justifyContent: wide ? 'flex-start' : 'center',
+            gap: 8, padding: wide ? '0 8px 0 6px' : 0,
+            overflow: 'hidden', whiteSpace: 'nowrap',
+          },
+        },
+          react.createElement('span', { 'aria-hidden': 'true', style: { flex: 'none', fontSize: 16 } }, '🧩'),
+          wide ? react.createElement('span', { style: { textOverflow: 'ellipsis', overflow: 'hidden', minWidth: 0 } }, '拼图') : null));
+    }
+
+    // ── 会话头部常驻开关（conversation.session.header.actions，永远可见）──
+    function HeaderToggle() {
       var tickState = react.useState(0);
       var setTick = tickState[1];
       react.useEffect(function () {
@@ -522,19 +562,17 @@ window.__ModuleLoader__.load({
       return react.createElement('button', {
         type: 'button',
         title: '莉娅拼图',
+        'aria-label': '莉娅拼图',
         onClick: togglePanel,
-        'aria-expanded': panelState.open,
         style: {
-          display: 'flex', alignItems: 'center', gap: 6, width: '100%', cursor: 'pointer',
-          font: 'inherit', fontSize: 13, padding: '8px 12px',
+          display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+          width: 28, height: 28, borderRadius: 8, cursor: 'pointer',
+          border: '1px solid var(--dsw-alias-border-l2, rgba(128,128,128,0.3))',
+          background: panelState.open ? 'var(--dsw-alias-interactive-bg-hover, rgba(128,128,128,0.15))' : 'var(--dsw-alias-bg-layer-1, transparent)',
           color: 'var(--dsw-alias-label-primary, inherit)',
-          background: panelState.open ? 'var(--dsw-alias-bg-layer-3, rgba(0,0,0,0.06))' : 'transparent',
-          border: '1px solid ' + (panelState.open ? 'var(--dsw-alias-border-l2, rgba(128,128,128,0.5))' : 'transparent'),
-          borderRadius: 10, textAlign: 'left',
+          fontSize: 15, lineHeight: 1, flex: 'none',
         },
-      },
-        react.createElement('span', { 'aria-hidden': 'true' }, '🧩'),
-        react.createElement('span', null, '拼图'));
+      }, '🧩');
     }
 
     // ── 设置页：莉娅拼图（图片库管理 + 当前局摘要）──
@@ -696,6 +734,17 @@ window.__ModuleLoader__.load({
             label: function () { return '莉娅拼图'; },
           },
           PuzzleToggle
+        );
+      });
+      slots.inject('conversation.session.header.actions', function () {
+        return slots.register(
+          {
+            name: 'conversation.session.header.actions',
+            id: 'dsh-puzzle-open',
+            order: 30,
+            label: function () { return '莉娅拼图'; },
+          },
+          HeaderToggle
         );
       });
       slots.inject('shell.overlay', function () {

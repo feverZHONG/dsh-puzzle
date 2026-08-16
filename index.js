@@ -139,6 +139,10 @@ export function apply(ctx) {
           res.end(JSON.stringify(obj))
         }
 
+        if (p === '/dsh-puzzle' || p === '/dsh-puzzle/') {
+          json(200, { ok: true, name: 'dsh-puzzle', images: scanImages().length })
+          return
+        }
         if (p === '/dsh-puzzle/images') {
           json(200, { ok: true, images: scanImages() })
           return

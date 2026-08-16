@@ -2,3 +2,9 @@ node_modules/
 *.log
 .patch-backups/
 .DS_Store
+# 本地图库：puzzles/ 下的图仅供本地游玩，不入 git/GitHub（默认图是代码内置的占位图 SVG）
+puzzles/*.png
+puzzles/*.jpg
+puzzles/*.jpeg
+puzzles/*.webp
+puzzles/*.gif

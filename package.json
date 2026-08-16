@@ -1,9 +1,12 @@
 {
   "name": "dsh-puzzle-plugin",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "莉娅拼图插件：滑块拼图小游戏，随时可玩，莉娅能发话/换图/看进度",
   "type": "module",
   "main": "index.js",
+  "scripts": {
+    "build:client": "node client/build.mjs"
+  },
   "exports": {
     ".": {
       "default": "./index.js"
@@ -16,9 +19,11 @@
   },
   "files": [
     "index.js",
+    "host",
+    "client.js",
+    "client",
     "cordis.patch.yml",
-    "README.md",
-    "client.js"
+    "README.md"
   ],
   "license": "MIT",
   "dsh": {

@@ -10,6 +10,7 @@ DeepSeek Harness（DSH）WebUI 的滑块拼图小游戏插件：随时点开就�
 - 面板常驻助手碎碎念（开局/完成随机台词池），助手也能用 `puzzle_talk` 实时发话
 - **换图三路**：
   1. 丢图进 `puzzles/`：png / jpg / webp / gif 放进去，设置页「🔃 刷新图片」即识别
+     （默认内置一张预设图 `bg_summer.png`，可替换、可增减）
   2. 面板 / 设置页直接粘贴图片 URL（http / https / data:）
   3. 对话里让助手换：`puzzle_set_image`（图库名 或 直链 URL）
 

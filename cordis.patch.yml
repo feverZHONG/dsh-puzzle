@@ -1,0 +1,4 @@
+# dsh-puzzle —— 挂载条目
+- insert:
+    - id: dsh-puzzle
+      name: dsh-puzzle-plugin

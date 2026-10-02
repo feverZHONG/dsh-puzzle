@@ -1,6 +1,6 @@
 {
   "name": "dsh-puzzle-plugin",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "莉娅拼图插件：滑块拼图小游戏，随时可玩，莉娅能发话/换图/看进度",
   "type": "module",
   "main": "index.js",
@@ -40,7 +40,7 @@
   },
   "peerDependencies": {
     "@deepseek-ai/cordis": "^4.0.1",
-    "@deepseek-ai/dsh-client-ui-slots": "0.1.0-rc.5",
-    "@deepseek-ai/dsh-client-runtime": "0.1.0-rc.5"
+    "@deepseek-ai/dsh-client-ui-slots": "0.2.0-rc.2",
+    "@deepseek-ai/dsh-client-runtime": "0.2.0-rc.2"
   }
 }

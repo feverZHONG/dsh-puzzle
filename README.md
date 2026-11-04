@@ -33,7 +33,7 @@ DeepSeek Harness（DSH）WebUI 的滑块拼图小游戏插件：随时点开就�
 dsh plugin --profile web add <插件目录>
 
 # 或从打包好的 tgz 安装（可移植，不依赖源目录存活）
-dsh plugin --profile web add dsh-puzzle-plugin-0.2.0.tgz
+dsh plugin --profile web add dsh-puzzle-plugin-0.2.2.tgz
 ```
 
 安装后重启 WebUI 生效。`dsh` 请替换为你安装的 DSH CLI 调用方式。
